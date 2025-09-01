@@ -4,12 +4,12 @@
 #include <ezButton.h>
 
 // WiFi credentials
-const char *ssid = "Kulturhaus Ostblock Bleibt!";
-const char *password = "PoserUncleMinusSushi";
+const char *ssid = "FreeAllAntifas";
+const char *password = "acab1312";
 
 // OSC settings
-const char *oscHost = "10.10.0.229"; // Target IP address
-const int oscPort = 8000;            // Target port
+const char *oscHost = "192.168.1.209"; // Target IP address
+const int oscPort = 8000;              // Target port
 
 // Pin definitions
 const uint8_t BUTTON_PINS[] = {0,  2,  3,  4,  13, 15, 16, 21, 22, 23,
