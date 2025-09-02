@@ -47,19 +47,20 @@ void setup() {
   Serial.println("OSC ready");
 }
 
-void sendOSC(int buttonNum, int state) {
-  OSCMessage msg("/button");
-  msg.add(buttonNum);
-  msg.add(state);
+void sendOSC(int buttonNum, int value) {
+  // Adresse dynamisch zusammensetzen: /button/[i]
+  char address[32];
+  snprintf(address, sizeof(address), "/button/%d",
+           buttonNum); // snprintf used for non dynamic heap allocation
 
-  // Use AsyncUDPMessage which implements Print interface
+  OSCMessage msg(address);
+  msg.add(value); // only appened the value
+
   AsyncUDPMessage packet;
   msg.send(packet);
-
-  // Send the packet
   udp.sendTo(packet, targetIP, oscPort);
 
-  Serial.printf("OSC: /button %d %d\n", buttonNum, state);
+  Serial.printf("OSC: %s %d\n", address, value);
 }
 
 void loop() {
