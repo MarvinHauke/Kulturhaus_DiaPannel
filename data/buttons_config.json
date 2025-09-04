@@ -1,0 +1,157 @@
+{
+  "buttons": [
+    {
+      "id": 1,
+      "pin": 0,
+      "osc": "/button/1",
+      "wled": "/win&PS=1",
+      "poti_pin": -1,
+      "mode": "momentary"
+    },
+    {
+      "id": 2,
+      "pin": 2,
+      "osc": "/button/2",
+      "wled": "/win&PS=2",
+      "poti_pin": 14,
+      "mode": "momentary"
+    },
+    {
+      "id": 3,
+      "pin": 3,
+      "osc": "/button/3",
+      "wled": "/win&PS=3",
+      "poti_pin": -1,
+      "mode": "toggle"
+    },
+    {
+      "id": 4,
+      "pin": 4,
+      "osc": "/button/4",
+      "wled": "/win&PS=4",
+      "poti_pin": -1,
+      "mode": "momentary"
+    },
+    {
+      "id": 5,
+      "pin": 13,
+      "osc": "/button/5",
+      "wled": "/win&PS=5",
+      "poti_pin": -1,
+      "mode": "momentary"
+    },
+    {
+      "id": 6,
+      "pin": 15,
+      "osc": "/button/6",
+      "wled": "/win&PS=20",
+      "poti_pin": -1,
+      "mode": "toggle"
+    },
+    {
+      "id": 7,
+      "pin": 16,
+      "osc": "/button/7",
+      "wled": "/win&PS=7",
+      "poti_pin": -1,
+      "mode": "momentary"
+    },
+    {
+      "id": 8,
+      "pin": 21,
+      "osc": "/button/8",
+      "wled": "/win&PS=8",
+      "poti_pin": -1,
+      "mode": "momentary"
+    },
+    {
+      "id": 9,
+      "pin": 22,
+      "osc": "/button/9",
+      "wled": "/win&PS=9",
+      "poti_pin": -1,
+      "mode": "momentary"
+    },
+    {
+      "id": 10,
+      "pin": 23,
+      "osc": "/button/10",
+      "wled": "/win&PS=10",
+      "poti_pin": -1,
+      "mode": "momentary"
+    },
+    {
+      "id": 11,
+      "pin": 25,
+      "osc": "/button/11",
+      "wled": "/win&PS=11",
+      "poti_pin": -1,
+      "mode": "momentary"
+    },
+    {
+      "id": 12,
+      "pin": 26,
+      "osc": "/button/12",
+      "wled": "/win&PS=12",
+      "poti_pin": -1,
+      "mode": "momentary"
+    },
+    {
+      "id": 13,
+      "pin": 27,
+      "osc": "/button/13",
+      "wled": "/win&PS=13",
+      "poti_pin": -1,
+      "mode": "momentary"
+    },
+    {
+      "id": 14,
+      "pin": 32,
+      "osc": "/button/14",
+      "wled": "/win&PS=14",
+      "poti_pin": -1,
+      "mode": "momentary"
+    },
+    {
+      "id": 15,
+      "pin": 33,
+      "osc": "/button/15",
+      "wled": "/win&PS=15",
+      "poti_pin": -1,
+      "mode": "momentary"
+    },
+    {
+      "id": 16,
+      "pin": 34,
+      "osc": "/button/16",
+      "wled": "/win&PS=16",
+      "poti_pin": -1,
+      "mode": "momentary"
+    },
+    {
+      "id": 17,
+      "pin": 35,
+      "osc": "/button/17",
+      "wled": "/win&PS=17",
+      "poti_pin": -1,
+      "mode": "momentary"
+    },
+    {
+      "id": 18,
+      "pin": 36,
+      "osc": "/button/18",
+      "wled": "/win&PS=18",
+      "poti_pin": -1,
+      "mode": "momentary"
+    },
+    {
+      "id": 19,
+      "pin": 39,
+      "osc": "/button/19",
+      "wled": "/win&PS=19",
+      "poti_pin": -1,
+      "mode": "momentary"
+    }
+  ]
+}
+

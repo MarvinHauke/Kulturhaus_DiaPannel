@@ -1,36 +1,25 @@
-#include <AsyncUDP.h>
-#include <OSCMessage.h>
+#include "SimpleButton.h"
+#include <SPIFFS.h>
 #include <WiFi.h>
-#include <ezButton.h>
 
 // WiFi credentials
-// look at .env
 const char *ssid = WIFI_SSID;
 const char *password = WIFI_PASSWORD;
 
 // OSC settings
-// look at .env
-const char *oscHost = OSC_HOST; // Target IP address
-const int oscPort = OSC_PORT;   // Target port
+const char *oscHost = OSC_HOST;
+const int oscPort = OSC_PORT;
 
-// Pin definitions
-const uint8_t BUTTON_PINS[] = {0,  2,  3,  4,  13, 15, 16, 21, 22, 23,
-                               25, 26, 27, 32, 33, 34, 35, 36, 39};
-const uint8_t NUM_BUTTONS = sizeof(BUTTON_PINS) / sizeof(BUTTON_PINS[0]);
-
-// Button array
-ezButton *buttons[NUM_BUTTONS];
-
-AsyncUDP udp;
-IPAddress targetIP;
+// WLED settings (optional)
+const char *wledHost = WLED_HOST;
 
 void setup() {
   Serial.begin(9600);
 
-  // Initialize buttons
-  for (uint8_t i = 0; i < NUM_BUTTONS; i++) {
-    buttons[i] = new ezButton(BUTTON_PINS[i]);
-    buttons[i]->setDebounceTime(50);
+  // Initialize SPIFFS to read config file
+  if (!SPIFFS.begin(true)) {
+    Serial.println("SPIFFS mount failed!");
+    return;
   }
 
   // Connect to WiFi
@@ -40,45 +29,36 @@ void setup() {
     delay(500);
     Serial.print(".");
   }
-  Serial.println();
-  Serial.print("Connected! IP: ");
-  Serial.println(WiFi.localIP());
+  Serial.println("\nConnected! IP: " + WiFi.localIP().toString());
 
-  // Parse target IP
-  targetIP.fromString(oscHost);
-  Serial.println("OSC ready");
-}
-
-void sendOSC(int buttonNum, int value) {
-  // Adresse dynamisch zusammensetzen: /button/[i]
-  char address[32];
-  snprintf(address, sizeof(address), "/button/%d",
-           buttonNum); // snprintf used for non dynamic heap allocation, more
-                       // efficient then String
-
-  OSCMessage msg(address);
-  msg.add(value); // only appened the value
-
-  AsyncUDPMessage packet;
-  msg.send(packet);
-  udp.sendTo(packet, targetIP, oscPort);
-
-  Serial.printf("OSC: %s %d\n", address, value);
-}
-
-void loop() {
-  // Update all buttons
-  for (uint8_t i = 0; i < NUM_BUTTONS; i++) {
-    buttons[i]->loop();
-
-    if (buttons[i]->isPressed()) {
-      Serial.printf("Button %d pressed\n", i + 1);
-      sendOSC(i + 1, 1); // Send press event
-    }
-
-    if (buttons[i]->isReleased()) {
-      Serial.printf("Button %d released\n", i + 1);
-      sendOSC(i + 1, 0); // Send release event
-    }
+  // Load button configuration from file
+  File configFile = SPIFFS.open("/buttons_config.json", "r");
+  if (!configFile) {
+    Serial.println("Failed to open config file!");
+    return;
   }
+
+  String jsonConfig = configFile.readString();
+  configFile.close();
+
+  // Setup button system
+  ButtonSystem &buttons = ButtonSystem::getInstance();
+
+  if (!buttons.loadConfig(jsonConfig.c_str())) {
+    Serial.println("Failed to load button config!");
+    return;
+  }
+
+  // Configure network targets
+  IPAddress targetIP;
+  targetIP.fromString(oscHost);
+  buttons.setOSCTarget(targetIP, oscPort);
+  buttons.setWLEDHost(wledHost);
+
+  // Initialize buttons
+  buttons.init();
+
+  Serial.println("System ready!");
 }
+
+void loop() { ButtonSystem::getInstance().update(); }
