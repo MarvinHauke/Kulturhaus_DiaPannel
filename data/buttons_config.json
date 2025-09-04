@@ -4,7 +4,9 @@
       "id": 1,
       "pin": 0,
       "osc": "/button/1",
-      "wled": "/win&PS=1",
+      "wled": "/json/state",
+      "preset_number": 1,
+      "wled_attribute": "bri",
       "poti_pin": -1,
       "mode": "momentary"
     },
@@ -12,7 +14,9 @@
       "id": 2,
       "pin": 2,
       "osc": "/button/2",
-      "wled": "/win&PS=2",
+      "wled": "/json/state",
+      "preset_number": 2,
+      "wled_attribute": "bri",
       "poti_pin": 14,
       "mode": "momentary"
     },
@@ -20,7 +24,9 @@
       "id": 3,
       "pin": 3,
       "osc": "/button/3",
-      "wled": "/win&PS=3",
+      "wled": "/json/state",
+      "preset_number": 3,
+      "wled_attribute": "",
       "poti_pin": -1,
       "mode": "toggle"
     },
@@ -28,7 +34,9 @@
       "id": 4,
       "pin": 4,
       "osc": "/button/4",
-      "wled": "/win&PS=4",
+      "wled": "/json/state",
+      "preset_number": 4,
+      "wled_attribute": "bri",
       "poti_pin": -1,
       "mode": "momentary"
     },
@@ -36,7 +44,9 @@
       "id": 5,
       "pin": 13,
       "osc": "/button/5",
-      "wled": "/win&PS=5",
+      "wled": "/json/state",
+      "preset_number": 5,
+      "wled_attribute": "bri",
       "poti_pin": -1,
       "mode": "momentary"
     },
@@ -44,7 +54,9 @@
       "id": 6,
       "pin": 15,
       "osc": "/button/6",
-      "wled": "/win&PS=20",
+      "wled": "/json/state",
+      "preset_number": 20,
+      "wled_attribute": "",
       "poti_pin": -1,
       "mode": "toggle"
     },
@@ -52,7 +64,9 @@
       "id": 7,
       "pin": 16,
       "osc": "/button/7",
-      "wled": "/win&PS=7",
+      "wled": "/json/state",
+      "preset_number": 7,
+      "wled_attribute": "bri",
       "poti_pin": -1,
       "mode": "momentary"
     },
@@ -60,7 +74,9 @@
       "id": 8,
       "pin": 21,
       "osc": "/button/8",
-      "wled": "/win&PS=8",
+      "wled": "/json/state",
+      "preset_number": 8,
+      "wled_attribute": "bri",
       "poti_pin": -1,
       "mode": "momentary"
     },
@@ -68,7 +84,9 @@
       "id": 9,
       "pin": 22,
       "osc": "/button/9",
-      "wled": "/win&PS=9",
+      "wled": "/json/state",
+      "preset_number": 9,
+      "wled_attribute": "bri",
       "poti_pin": -1,
       "mode": "momentary"
     },
@@ -76,7 +94,9 @@
       "id": 10,
       "pin": 23,
       "osc": "/button/10",
-      "wled": "/win&PS=10",
+      "wled": "/json/state",
+      "preset_number": 10,
+      "wled_attribute": "bri",
       "poti_pin": -1,
       "mode": "momentary"
     },
@@ -84,7 +104,9 @@
       "id": 11,
       "pin": 25,
       "osc": "/button/11",
-      "wled": "/win&PS=11",
+      "wled": "/json/state",
+      "preset_number": 11,
+      "wled_attribute": "bri",
       "poti_pin": -1,
       "mode": "momentary"
     },
@@ -92,7 +114,9 @@
       "id": 12,
       "pin": 26,
       "osc": "/button/12",
-      "wled": "/win&PS=12",
+      "wled": "/json/state",
+      "preset_number": 12,
+      "wled_attribute": "bri",
       "poti_pin": -1,
       "mode": "momentary"
     },
@@ -100,7 +124,9 @@
       "id": 13,
       "pin": 27,
       "osc": "/button/13",
-      "wled": "/win&PS=13",
+      "wled": "/json/state",
+      "preset_number": 13,
+      "wled_attribute": "bri",
       "poti_pin": -1,
       "mode": "momentary"
     },
@@ -108,7 +134,9 @@
       "id": 14,
       "pin": 32,
       "osc": "/button/14",
-      "wled": "/win&PS=14",
+      "wled": "/json/state",
+      "preset_number": 14,
+      "wled_attribute": "bri",
       "poti_pin": -1,
       "mode": "momentary"
     },
@@ -116,7 +144,9 @@
       "id": 15,
       "pin": 33,
       "osc": "/button/15",
-      "wled": "/win&PS=15",
+      "wled": "/json/state",
+      "preset_number": 15,
+      "wled_attribute": "bri",
       "poti_pin": -1,
       "mode": "momentary"
     },
@@ -124,7 +154,9 @@
       "id": 16,
       "pin": 34,
       "osc": "/button/16",
-      "wled": "/win&PS=16",
+      "wled": "/json/state",
+      "preset_number": 16,
+      "wled_attribute": "bri",
       "poti_pin": -1,
       "mode": "momentary"
     },
@@ -132,7 +164,9 @@
       "id": 17,
       "pin": 35,
       "osc": "/button/17",
-      "wled": "/win&PS=17",
+      "wled": "/json/state",
+      "preset_number": 17,
+      "wled_attribute": "bri",
       "poti_pin": -1,
       "mode": "momentary"
     },
@@ -140,7 +174,9 @@
       "id": 18,
       "pin": 36,
       "osc": "/button/18",
-      "wled": "/win&PS=18",
+      "wled": "/json/state",
+      "preset_number": 18,
+      "wled_attribute": "bri",
       "poti_pin": -1,
       "mode": "momentary"
     },
@@ -148,10 +184,11 @@
       "id": 19,
       "pin": 39,
       "osc": "/button/19",
-      "wled": "/win&PS=19",
+      "wled": "/json/state",
+      "preset_number": 19,
+      "wled_attribute": "bri",
       "poti_pin": -1,
       "mode": "momentary"
     }
   ]
 }
-
