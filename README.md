@@ -1,34 +1,54 @@
 # Kulturhaus DiaPannel
 
-ESP32-basiertes OSC Button Controller Interface mit 19 Buttons für die Steuerung von Ableton Live oder anderen OSC-kompatiblen Anwendungen.
+ESP32-based OSC button controller interface with 19 buttons for controlling Ableton Live or other OSC-compatible applications.
+
+## Table of Contents
+
+- [Features](#features)
+- [Hardware](#hardware)
+- [Installation](#installation)
+  - [Prerequisites](#prerequisites)
+  - [Recommended Tools](#recommended-tools)
+  - [Setup](#setup)
+- [OSC Protocol](#osc-protocol)
+- [Python OSC-to-MIDI Bridge (Optional)](#python-osc-to-midi-bridge-optional)
+- [Project Structure](#project-structure)
+- [Configuration](#configuration)
+  - [WiFi and OSC Settings](#wifi-and-osc-settings)
+  - [Change Button Pins](#change-button-pins)
+  - [Adjust Debounce Time](#adjust-debounce-time)
+- [Troubleshooting](#troubleshooting)
+- [Libraries](#libraries)
+- [License](#license)
+- [Author](#author)
 
 ## Features
 
-- 19 Hardware-Buttons mit Debouncing
-- OSC-Nachrichten über WiFi
-- Non-blocking Code für optimale Performance
-- Konfigurierbare Netzwerk-Einstellungen über `.env` File
-- Button Press/Release Events
-- OSC-Adressformat: `/button/[nummer]` mit Wert 0 (release) oder 1 (press)
+- 19 hardware buttons with debouncing
+- OSC messages over WiFi
+- Non-blocking code for optimal performance
+- Configurable network settings via `.env` file
+- Button press/release events
+- OSC address format: `/button/[number]` with value 0 (release) or 1 (press)
 
 ## Hardware
 
 - **Board**: ESP32 DevKit
-- **Buttons**: 19 Taster an GPIO Pins:
+- **Buttons**: 19 push buttons on GPIO pins:
   - Pins: 0, 2, 3, 4, 13, 15, 16, 21, 22, 23, 25, 26, 27, 32, 33, 34, 35, 36, 39
-- **Debounce-Zeit**: 50ms
+- **Debounce time**: 50ms
 
 ## Installation
 
-### Voraussetzungen
+### Prerequisites
 
-- [PlatformIO](https://platformio.org/) installiert
-- ESP32 Board Support
-- USB-Treiber für ESP32
+- [PlatformIO](https://platformio.org/) installed
+- ESP32 board support
+- USB drivers for ESP32
 
-### Empfohlene Tools
+### Recommended Tools
 
-- **[direnv](https://direnv.net/)** - Automatisches Laden von Environment-Variablen aus `.env`
+- **[direnv](https://direnv.net/)** - Automatic loading of environment variables from `.env`
   ```bash
   # Installation macOS
   brew install direnv
@@ -36,143 +56,143 @@ ESP32-basiertes OSC Button Controller Interface mit 19 Buttons für die Steuerun
   apt-get install direnv
   ```
 
-- **[uv](https://github.com/astral-sh/uv)** - Schneller Python Package Manager für die OSC-zu-MIDI Bridge
+- **[uv](https://github.com/astral-sh/uv)** - Fast Python package manager for the OSC-to-MIDI bridge
   ```bash
   # Installation
   curl -LsSf https://astral.sh/uv/install.sh | sh
-  # Oder mit brew
+  # Or with brew
   brew install uv
   ```
 
 ### Setup
 
-1. Repository klonen:
+1. Clone repository:
 ```bash
 git clone <repository-url>
 cd Kulturhaus_DiaPannel
 ```
 
-2. `.env` File erstellen:
+2. Create `.env` file:
 ```env
-WIFI_SSID="DeinWiFiName"
-WIFI_PASSWORD="DeinWiFiPasswort"
+WIFI_SSID="YourWiFiName"
+WIFI_PASSWORD="YourWiFiPassword"
 OSC_HOST="192.168.1.100"
 OSC_PORT=8000
 ```
 
-3. Environment-Variablen aktivieren:
+3. Activate environment variables:
 
-**Mit direnv (empfohlen):**
+**With direnv (recommended):**
 ```bash
-# Einmalig direnv für deine Shell aktivieren
-echo 'eval "$(direnv hook bash)"' >> ~/.bashrc  # für bash
-echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc    # für zsh
+# One-time setup: activate direnv for your shell
+echo 'eval "$(direnv hook bash)"' >> ~/.bashrc  # for bash
+echo 'eval "$(direnv hook zsh)"' >> ~/.zshrc    # for zsh
 
-# Im Projektverzeichnis
+# In project directory
 direnv allow
 ```
 
-**Oder manuell:**
+**Or manually:**
 ```bash
-export WIFI_SSID="DeinWiFiName"
-export WIFI_PASSWORD="DeinWiFiPasswort"
+export WIFI_SSID="YourWiFiName"
+export WIFI_PASSWORD="YourWiFiPassword"
 ```
 
-4. Projekt kompilieren und hochladen:
+4. Compile and upload project:
 ```bash
 pio run -t upload
 ```
 
-5. Serial Monitor für Debugging:
+5. Serial monitor for debugging:
 ```bash
 pio device monitor
 ```
 
-## OSC Protokoll
+## OSC Protocol
 
-Das System sendet OSC-Nachrichten im Format:
+The system sends OSC messages in the format:
 
-- **Adresse**: `/button/[1-19]`
-- **Wert**: 
-  - `1` = Button gedrückt
-  - `0` = Button losgelassen
+- **Address**: `/button/[1-19]`
+- **Value**: 
+  - `1` = Button pressed
+  - `0` = Button released
 
-### Beispiele:
-- Button 1 gedrückt: `/button/1` mit Wert `1`
-- Button 1 losgelassen: `/button/1` mit Wert `0`
-- Button 6 gedrückt: `/button/6` mit Wert `1`
+### Examples:
+- Button 1 pressed: `/button/1` with value `1`
+- Button 1 released: `/button/1` with value `0`
+- Button 6 pressed: `/button/6` with value `1`
 
-## Python OSC-zu-MIDI Bridge (Optional)
+## Python OSC-to-MIDI Bridge (Optional)
 
-Ein Python-Script zur Konvertierung von OSC-Nachrichten zu MIDI CC ist verfügbar:
+A Python script for converting OSC messages to MIDI CC is available:
 
 ### Installation:
 ```bash
-# Mit uv (empfohlen)
+# With uv (recommended)
 uv pip install python-osc mido python-rtmidi
 
-# Oder mit pip
+# Or with pip
 pip install python-osc mido python-rtmidi
 ```
 
-### Verwendung:
+### Usage:
 ```bash
 python osc_to_midi.py --ip 0.0.0.0 --port 8000
 ```
 
-Das Script mappt jeden Button zu einer MIDI CC-Nummer und sendet:
-- CC Wert 127 bei Button-Press
-- CC Wert 0 bei Button-Release
+The script maps each button to a MIDI CC number and sends:
+- CC value 127 on button press
+- CC value 0 on button release
 
-## Projektstruktur
+## Project Structure
 
 ```
 Kulturhaus_DiaPannel/
 ├── src/
-│   └── main.cpp          # Hauptprogramm
-├── .env                  # WiFi/OSC Konfiguration (nicht im Git)
-├── .envrc                # direnv Konfiguration
-├── platformio.ini        # PlatformIO Konfiguration
-├── osc_to_midi.py        # Optional: OSC zu MIDI Bridge
-└── README.md            # Diese Datei
+│   └── main.cpp          # Main program
+├── .env                  # WiFi/OSC configuration (not in Git)
+├── .envrc                # direnv configuration
+├── platformio.ini        # PlatformIO configuration
+├── osc_to_midi.py        # Optional: OSC to MIDI bridge
+└── README.md            # This file
 ```
 
-## Konfiguration
+## Configuration
 
-### WiFi und OSC Einstellungen
+### WiFi and OSC Settings
 
-Editiere `.env`:
+Edit `.env`:
 ```env
-WIFI_SSID="NeuesNetzwerk"
-WIFI_PASSWORD="NeuesPasswort"  
+WIFI_SSID="NewNetwork"
+WIFI_PASSWORD="NewPassword"  
 OSC_HOST="10.0.0.100"
 OSC_PORT=8000
 ```
 
-### Button-Pins ändern
+### Change Button Pins
 
-In `src/main.cpp` das Array `BUTTON_PINS[]` anpassen.
+In `src/main.cpp` adjust the `BUTTON_PINS[]` array.
 
-### Debounce-Zeit anpassen
+### Adjust Debounce Time
 
 In `src/main.cpp`:
 ```cpp
-buttons[i]->setDebounceTime(50); // Zeit in Millisekunden
+buttons[i]->setDebounceTime(50); // Time in milliseconds
 ```
 
 ## Troubleshooting
 
 ### "SSID too long or missing"
-- Prüfe ob `.env` File existiert
-- Stelle sicher dass Environment-Variablen gesetzt sind (`echo $WIFI_SSID`)
-- Führe `direnv allow` aus oder exportiere Variablen manuell
+- Check if `.env` file exists
+- Ensure environment variables are set (`echo $WIFI_SSID`)
+- Run `direnv allow` or export variables manually
 
-### Keine OSC-Nachrichten empfangen
-- Prüfe IP-Adresse des Empfängers in `.env`
-- Stelle sicher dass ESP32 und Empfänger im gleichen Netzwerk sind
-- Prüfe Firewall-Einstellungen
+### No OSC messages received
+- Check receiver's IP address in `.env`
+- Ensure ESP32 and receiver are on the same network
+- Check firewall settings
 
-### Build-Fehler
+### Build errors
 ```bash
 pio run -t clean
 pio run
@@ -180,14 +200,14 @@ pio run
 
 ## Libraries
 
-- [ezButton](https://github.com/ArduinoGetStarted/ezButton) - Button Debouncing
-- [OSC](https://github.com/CNMAT/OSC) - OSC Protokoll
-- AsyncUDP - ESP32 UDP Kommunikation
+- [ezButton](https://github.com/ArduinoGetStarted/ezButton) - Button debouncing
+- [OSC](https://github.com/CNMAT/OSC) - OSC protocol
+- AsyncUDP - ESP32 UDP communication
 
-## Lizenz
+## License
 
-[Deine Lizenz hier]
+[Your license here]
 
-## Autor
+## Author
 
-[Dein Name]
+[Your name]
