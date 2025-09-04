@@ -4,10 +4,12 @@
 #include <ezButton.h>
 
 // WiFi credentials
-const char *ssid = WIFI_SSID;         // look at .env
-const char *password = WIFI_PASSWORD; // look at .env
+// look at .env
+const char *ssid = WIFI_SSID;
+const char *password = WIFI_PASSWORD;
 
 // OSC settings
+// look at .env
 const char *oscHost = OSC_HOST; // Target IP address
 const int oscPort = OSC_PORT;   // Target port
 
