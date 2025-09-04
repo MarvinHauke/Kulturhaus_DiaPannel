@@ -53,7 +53,8 @@ void sendOSC(int buttonNum, int value) {
   // Adresse dynamisch zusammensetzen: /button/[i]
   char address[32];
   snprintf(address, sizeof(address), "/button/%d",
-           buttonNum); // snprintf used for non dynamic heap allocation
+           buttonNum); // snprintf used for non dynamic heap allocation, more
+                       // efficient then String
 
   OSCMessage msg(address);
   msg.add(value); // only appened the value
